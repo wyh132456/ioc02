@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.javaboy.ioc.model.User" id="user">
+<!--        自动匹配相对应的构造方法-->
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="username" value="javaboy"/>
+        <constructor-arg name="address" value="www.javaboy.org"/>
+    </bean>
+    <bean class="org.javaboy.ioc.model.User" id="user2">
+<!--        啥也不写默认调用无参构造-->
+<!--        property给构造方法设置属性-->
+        <property name="id" value="2"/>
+        <property name="address" value="www.baidu.com"/>
+        <property name="username" value="allboy"/>
+
+    </bean>
+<!--    静态工厂注入-->
+<!--    <bean class="org.javaboy.ioc.OkHttpStaticFactory" factory-method="getInstance" id="httpClient"/>-->
+<!--    动态工厂注入-->
+    <bean class="org.javaboy.ioc.OkhttpFactory" id="okhttpFactory"/>
+    <bean class="okhttp3.OkHttpClient" factory-bean="okhttpFactory" factory-method="getInstance" id="okHttpClient"/>
+
+<!--    对象注入-->
+    <bean class="org.javaboy.ioc.model.User" id="user3">
+        <property name="id" value="4"/>
+        <property name="address" value="www.baidu.com"/>
+        <property name="username" value="allboy"/>
+        <property name="cat" ref="cat"/>
+    </bean>
+    <bean class="org.javaboy.ioc.model.Cat" id="cat">
+        <property name="age" value="3"/>
+        <property name="name" value="xiaobai"/>
+    </bean>
+<!--    数组注入-->
+    <bean class="org.javaboy.ioc.model.User" id="user4">
+        <property name="cats">
+            <array>
+                <ref bean="cat"/>
+                <bean class="org.javaboy.ioc.model.Cat" id="cat2">
+                    <property name="age" value="8"/>
+                    <property name="name" value="xiaohei"/>
+                </bean>
+            </array>
+        </property>
+        <property name="favorites">
+            <list>
+                <value>足球</value>
+                <value>篮球</value>
+            </list>
+        </property>
+        <property name="details">
+            <map>
+                <entry key="gender" value="男"/>
+                <entry key="age" value="99"/>
+            </map>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="phone">12345678</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

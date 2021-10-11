@@ -1,8 +1,8 @@
 package org.allboy.ioc;
 
-public class WindowsShowCmd implements ShowCmd{
+public class LinuxShowCmd implements ShowCmd{
     @Override
     public String showCmd() {
-        return "dir";
+        return "ls";
     }
 }

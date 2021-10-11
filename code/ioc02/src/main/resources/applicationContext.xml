@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <beans profile="dev">
+        <bean class="org.allboy.ioc.DataSource" id="devDs">
+            <property name="url" value="jdbc:mysql://vhr"/>
+            <property name="userName" value="root"/>
+            <property name="passWord" value="123"/>
+        </bean>
+    </beans>
+    <beans profile="prod">
+        <bean class="org.allboy.ioc.DataSource" id="prodDs">
+            <property name="url" value="jdbc:mysql://123.123/vhr"/>
+            <property name="userName" value="rooot"/>
+            <property name="passWord" value="1234565"/>
+        </bean>
+    </beans>
+</beans>

@@ -73,10 +73,15 @@ public class User {
         System.out.println("--------------init---------------");
     }
 
-    public User(String username, String address, Integer id) {
+    public User(String username, String address, Integer id, Cat cat, Cat[] cats, List<String> favorites, Map<String, Object> details, Properties info) {
         this.username = username;
         this.address = address;
         this.id = id;
+        this.cat = cat;
+        this.cats = cats;
+        this.favorites = favorites;
+        this.details = details;
+        this.info = info;
     }
 
     public String getUsername() {
